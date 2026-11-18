@@ -1,6 +1,6 @@
 # Game Stash Arcade
 
-A static website with **576 browser games**: 3D racing, 3D survival, arcade, action, puzzle, skill and sports games. No build step, no server code, no accounts.
+A static website with **585 browser games**: 3D racing, 3D survival, arcade, action, puzzle, skill and sports games. No build step, no server code, no accounts.
 
 ## Run it
 
@@ -17,6 +17,7 @@ It also works on GitHub Pages, Netlify, or any static host. three.js is bundled 
 
 | Engine | Category | Notes |
 |---|---|---|
+| **Poly Rally** (`trials3d`) | Racing | Low-poly time trials: 8 tracks with ramps, jumps, boost pads, checkpoints, ghost replays of your best run, and a track builder |
 | Turbo Rally 3D (`race3d`) | Racing | Procedurally generated tracks, 3–5 AI rivals, 3 laps |
 | Last Stand 3D (`survival3d`) | Survival | Wave-based arena shooter, obstacles, health packs, night mode |
 | Snake, Brick Smash, Glider, Meteor Dodge | Arcade | |

@@ -80,6 +80,7 @@
 
     const hudL = el('div', 'hud hud-l'), hudR = el('div', 'hud hud-r');
     stage.appendChild(hudL); stage.appendChild(hudR);
+    if (eng.noHud) hudL.style.display = hudR.style.display = 'none';
     const overlay = el('div', 'go hidden');
     stage.appendChild(overlay);
 

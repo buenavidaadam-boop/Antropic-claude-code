@@ -30,7 +30,19 @@
   };
 
   const games = [];
+  const SUNNY = { id: 'sunny', name: 'Sunny', bg: '#0f2a3d', fg: '#ffffff', a1: '#ff3355', a2: '#7ccf6a', a3: '#9ad6ff' };
   Object.values(G.engines).forEach((eng) => {
+    if (eng.entries) {
+      eng.entries().forEach((e) => {
+        const id = eng.id + '-' + e.key, df = DIFF[e.diff - 1];
+        games.push({
+          id, engine: eng.id, theme: SUNNY, diff: df.d, diffName: df.name, seed: G.hash(id), title: e.title,
+          cat: eng.cat, icon: e.icon || eng.icon, desc: e.desc || eng.desc, controls: eng.controls, is3d: !!eng.three,
+          params: e.params || {}, featured: true,
+        });
+      });
+      return;
+    }
     THEMES.forEach((th, ti) => {
       DIFF.forEach((df) => {
         const id = eng.id + '-' + th.id + '-' + df.d;

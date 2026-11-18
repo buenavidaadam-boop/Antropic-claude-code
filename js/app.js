@@ -42,7 +42,7 @@
     if (q) { const words = q.split(/\s+/); out = out.filter((g) => { const h = (g.title + ' ' + g.cat + ' ' + g.desc + ' ' + g.engine + (g.is3d ? ' 3d' : '')).toLowerCase(); return words.every((w) => h.includes(w)); }); }
     if (sort === 'az') out = out.slice().sort((a, b) => a.title.localeCompare(b.title));
     else if (sort === 'best') out = out.slice().sort((a, b) => S.get('best:' + b.id, 0) - S.get('best:' + a.id, 0));
-    else if (cat !== 'Recent') out = out.slice().sort((a, b) => b.is3d - a.is3d);
+    else if (cat !== 'Recent') out = out.slice().sort((a, b) => (b.featured | 0) - (a.featured | 0) || b.is3d - a.is3d);
     return out;
   }
 
@@ -56,7 +56,8 @@
 
   // featured: one of each engine on the hero
   const featured = Object.keys(G.engines).map((e) => games.find((g) => g.engine === e && g.diff === 2 && g.theme.id === ['neon', 'jungle', 'sunset', 'ocean'][e.length % 4]) || games.find((g) => g.engine === e));
-  $('#featured').innerHTML = featured.filter((g) => g.is3d).concat(featured.filter((g) => !g.is3d).slice(0, 4)).map(card).join('');
+  const poly = games.filter((g) => g.featured);
+  $('#featured').innerHTML = [poly[0], poly[2], poly[poly.length - 1]].concat(featured.filter((g) => g.is3d && !g.featured), featured.filter((g) => !g.is3d).slice(0, 1)).map(card).join('');
 
   document.addEventListener('click', (e) => {
     const c = e.target.closest('.card');
